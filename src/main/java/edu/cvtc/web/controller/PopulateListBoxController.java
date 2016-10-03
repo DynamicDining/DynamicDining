@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.cvtc.web.comparators.SortBy;
-import edu.cvtc.web.exception.MovieSearchException;
+import edu.cvtc.web.exception.RestaurantSearchException;
 import edu.cvtc.web.model.Restaurant;
-import edu.cvtc.web.search.MovieSearch;
+import edu.cvtc.web.search.RestaurantSearch;
 import edu.cvtc.web.search.impl.MovieSearchImpl;
 
 /**
@@ -36,14 +36,14 @@ public class PopulateListBoxController extends HttpServlet {
 		String target = null;
 		
 		try {
-			final MovieSearch movieSearch = new MovieSearchImpl();
+			final RestaurantSearch movieSearch = new MovieSearchImpl();
 			final List<Restaurant> movies = movieSearch.retrieveMovieList(SortBy.TITLE);
 			
 			request.setAttribute("movies", movies);
 			
 			target = "edit-movie.jsp";
 			
-		} catch (MovieSearchException e){
+		} catch (RestaurantSearchException e){
 			e.printStackTrace();
 			request.setAttribute("error", "Sorry, we were unable to retrieve a list of movies from the database.");
 			target = "error.jsp";

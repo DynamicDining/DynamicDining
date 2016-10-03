@@ -10,20 +10,21 @@ import java.sql.Statement;
  *
  */
 public class DBUtils {
-	
+
 	public static final int TIMEOUT = 30;
-	public static final String CONNECTION = "jdbc:sqlite:movies.db";
-	
+	public static final String DATABASE_NAME = "restaurants.db";
+	public static final String CONNECTION = "jdbc:sqlite:" + DATABASE_NAME;
+
 	private static final String DRIVER_NAME = "org.sqlite.JDBC";
-	
+
 	public static Connection createConnection(final String connection) throws ClassNotFoundException, SQLException {
-		// register the driver 
+		// register the driver
 		Class.forName(DRIVER_NAME);
-		 
+
 		// create a database connection
 		return DriverManager.getConnection(connection);
 	}
-	
+
 	public static void closeConnections(final Connection connection, final Statement statement) {
 		try {
 			if (null != connection) {
@@ -36,5 +37,5 @@ public class DBUtils {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

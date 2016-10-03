@@ -5,8 +5,7 @@ package edu.cvtc.web.comparators;
  *
  */
 public class SortBy {
-	
-	public static final String TITLE = "title";
-	public static final String LENGTH = "length";
-	
+
+	public static final String NAME = "name";
+
 }
