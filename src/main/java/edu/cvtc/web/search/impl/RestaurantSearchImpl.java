@@ -13,7 +13,6 @@ import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
 import edu.cvtc.web.exception.RestaurantDatabaseException;
 import edu.cvtc.web.exception.RestaurantSearchException;
 import edu.cvtc.web.model.Restaurant;
-import edu.cvtc.web.predicates.MatchesTitlePredicate;
 import edu.cvtc.web.search.RestaurantSearch;
 
 /**
@@ -51,11 +50,11 @@ public class RestaurantSearchImpl implements RestaurantSearch {
 	@Override
 	public List<Restaurant> findRestaurantsByName(final String name) throws RestaurantSearchException {
 		try {
-			final List<Restaurant> movies = retrieveRestaurantsFromDatabase();
-			return Lists.newArrayList(Collections2.filter(movies, new MatchesTitlePredicate(name)));
+			final List<Restaurant> restaurants = retrieveRestaurantsFromDatabase();
+			return Lists.newArrayList(Collections2.filter(restaurants, new MatchesNamePredicate(name)));
 		} catch (final Exception e) {
 			e.printStackTrace();
-			throw new RestaurantSearchException("Error finding movies by title.");
+			throw new RestaurantSearchException("Error finding restaurants by name.");
 		}
 	}
 

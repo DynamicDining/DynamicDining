@@ -2,6 +2,7 @@ package edu.cvtc.web.dao.impl;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 	private static final String DROP_TABLE_RESTAURANT = "drop table if exists restaurant";
 	private static final String DROP_TABLE_REVIEW = "drop table if exists review";
 	private static final String CREATE_TABLE_RESTAURANT = "create table restaurant (restaurantID integer primary key autoincrement, name text, address text, city text, state text, zipCode text, telephoneNumber text, website text);";
-	private static final String CREATE_TABLE_REVIEW = "create table review (reviewID integer primary key autoincrement, restaurantID, review text, author text, foreign key(restaurantID) references restaurant(restaurantID));";
+	private static final String CREATE_TABLE_REVIEW = "create table review (reviewID integer primary key autoincrement, restaurantID, review text, author text, rating integer, foreign key(restaurantID) references restaurant(restaurantID));";
 	private static final String SELECT_FROM_RESTAURANT = "select * from restaurant";
 
 	@Override
@@ -130,8 +131,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			final int id = results.getInt("reviewID");
 			final String author = results.getString("author");
 			final String dbReview = results.getString("review");
+			final int rating = results.getInt("rating");
 
-			final Review review = new Review(id, dbReview, author);
+			final Review review = new Review(id, dbReview, author, rating);
 			reviews.add(review);
 		}
 
@@ -171,33 +173,30 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		}
 	}
 
-	// @Override
-	// public int deletePerson(int id) throws RestaurantDatabaseException {
-	// if (id != 0) {
-	// Connection connection = null;
-	// PreparedStatement deleteStatement = null;
-	//
-	// try {
-	// connection = DBUtils.createConnection(DBUtils.CONNECTION);
-	// final String delete = "delete from movie where id = ?";
-	// deleteStatement = connection.prepareStatement(delete);
-	//
-	// deleteStatement.setInt(1, id);
-	//
-	// deleteStatement.setQueryTimeout(DBUtils.TIMEOUT);
-	//
-	// return deleteStatement.executeUpdate();
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// throw new RestaurantDatabaseException("Error deleting movie from
-	// database.");
-	// } finally {
-	// DBUtils.closeConnections(connection, deleteStatement);
-	// }
-	// }
-	//
-	// return 0;
-	// }
+	@Override
+	public void insertReview(Review review, Restaurant restaurant) throws RestaurantReviewDatabaseException {
+		Connection connection = null;
+		PreparedStatement insertStatement = null;
+
+		try {
+			connection = DBUtils.createConnection(DBUtils.CONNECTION);
+
+			final String insert = "insert into review (restaurantID, review, author, rating) values (?,?,?,?)";
+			insertStatement = connection.prepareStatement(insert);
+
+			insertStatement.setInt(1, restaurant.getId());
+			insertStatement.setString(2, review.getReview());
+			insertStatement.setString(3, review.getAuthor());
+			insertStatement.setInt(4, review.getRating());
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+
+			insertStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RestaurantReviewDatabaseException("Error inserting review into database.");
+		}
+
+	}
 
 }
