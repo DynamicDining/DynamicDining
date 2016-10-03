@@ -14,6 +14,7 @@ public class Restaurant {
 	private String zipCode;
 	private String telephoneNumber;
 	private String website;
+	private double rating;
 
 	public Restaurant(String name, String address, String city, String state, String zipCode, String telephoneNumber,
 			String website) {
@@ -36,6 +37,19 @@ public class Restaurant {
 		this.zipCode = zipCode;
 		this.telephoneNumber = telephoneNumber;
 		this.website = website;
+	}
+
+	public Restaurant(Integer id, String name, String address, String city, String state, String zipCode,
+			String telephoneNumber, String website, double rating) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.telephoneNumber = telephoneNumber;
+		this.website = website;
+		this.rating = rating;
 	}
 
 	public Integer getId() {
@@ -100,6 +114,14 @@ public class Restaurant {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 
 }

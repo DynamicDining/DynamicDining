@@ -7,5 +7,6 @@ package edu.cvtc.web.comparators;
 public class SortBy {
 
 	public static final String NAME = "name";
+	public static final String RATING = "rating";
 
 }

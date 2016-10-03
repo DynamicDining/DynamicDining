@@ -21,6 +21,6 @@ public interface RestaurantDao {
 
 	List<Review> retrieveRestaurantReviews(int restaurantID) throws RestaurantReviewDatabaseException;
 
-	void insertReview(Review review, Restaurant restaurant) throws RestaurantReviewDatabaseException;
+	void insertReview(Review review, int restaurantID) throws RestaurantReviewDatabaseException;
 
 }

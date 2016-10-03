@@ -75,12 +75,12 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		} finally {
 			DBUtils.closeConnections(connection, statement);
 		}
+
 		return restaurants;
 	}
 
 	@Override
 	public List<Restaurant> retrieveRestaurantsByName(final String nameToSearchFor) throws RestaurantDatabaseException {
-
 		final List<Restaurant> restaurants = new ArrayList<Restaurant>();
 		Connection connection = null;
 		Statement statement = null;
@@ -103,13 +103,17 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		} finally {
 			DBUtils.closeConnections(connection, statement);
 		}
+
 		return restaurants;
 	}
 
-	private void buildRestaurantList(final List<Restaurant> restaurants, final ResultSet results) throws SQLException {
-
+	private void buildRestaurantList(final List<Restaurant> restaurants, final ResultSet results)
+			throws SQLException, RestaurantDatabaseException {
 		while (results.next()) {
+
 			final int id = results.getInt("restaurantID");
+
+			final double rating = calculateRestaurantRating(id);
 			final String name = results.getString("name");
 			final String address = results.getString("address");
 			final String city = results.getString("city");
@@ -119,14 +123,39 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			final String website = results.getString("website");
 
 			final Restaurant restaurant = new Restaurant(id, name, address, city, state, zipCode, telephoneNumber,
-					website);
+					website, rating);
 			restaurants.add(restaurant);
 		}
+	}
 
+	private double calculateRestaurantRating(int restaurantID) throws RestaurantDatabaseException {
+		Connection connection = null;
+		Statement statement = null;
+		double goodRatingsPercentage;
+
+		try {
+			connection = DBUtils.createConnection(DBUtils.CONNECTION);
+			statement = connection.createStatement();
+
+			statement.setQueryTimeout(DBUtils.TIMEOUT);
+
+			final String sql = "select count(restaurantID) as total, sum(rating) as goodRatings from review";
+			final ResultSet results = statement.executeQuery(sql);
+
+			final int goodRatings = results.getInt("goodRatings");
+			final int totalRatings = results.getInt("total");
+			goodRatingsPercentage = totalRatings != 0
+					? Math.round(((double) goodRatings / totalRatings) * 100.0) / 100.0 : totalRatings;
+
+		} catch (final Exception e) {
+			e.printStackTrace();
+			throw new RestaurantDatabaseException("Sorry, no rating.");
+		}
+
+		return goodRatingsPercentage;
 	}
 
 	private void buildReviewList(final List<Review> reviews, final ResultSet results) throws SQLException {
-
 		while (results.next()) {
 			final int id = results.getInt("reviewID");
 			final String author = results.getString("author");
@@ -136,13 +165,13 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			final Review review = new Review(id, dbReview, author, rating);
 			reviews.add(review);
 		}
-
 	}
 
 	@Override
 	public void populate(final String filePath) throws RestaurantDatabaseException {
 		Connection connection = null;
 		Statement statement = null;
+		PreparedStatement insertStatement = null;
 
 		try {
 			connection = DBUtils.createConnection(DBUtils.CONNECTION);
@@ -157,13 +186,21 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			final List<Restaurant> restaurants = WorkBookUtility.retrieveRestaurantsFromWorkBook(new File(filePath));
 
 			for (final Restaurant restaurant : restaurants) {
-				String insertValues = "insert into restaurant (name, address, city, state, zipcode, telephonenumber, website) values('"
-						+ restaurant.getName() + "', '" + restaurant.getAddress() + "', '" + restaurant.getCity()
-						+ "', '" + restaurant.getState() + "', '" + restaurant.getZipCode() + "', '"
-						+ restaurant.getTelephoneNumber() + "', '" + restaurant.getWebsite() + "');";
 
-				System.out.println(insertValues);
-				statement.executeUpdate(insertValues);
+				final String insert = "insert into restaurant (name, address, city, state, zipCode, telephoneNumber, website) values (?,?,?,?,?,?,?)";
+				insertStatement = connection.prepareStatement(insert);
+
+				insertStatement.setString(1, restaurant.getName());
+				insertStatement.setString(2, restaurant.getAddress());
+				insertStatement.setString(3, restaurant.getCity());
+				insertStatement.setString(4, restaurant.getState());
+				insertStatement.setString(5, restaurant.getZipCode());
+				insertStatement.setString(6, restaurant.getTelephoneNumber());
+				insertStatement.setString(7, restaurant.getWebsite());
+
+				insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+
+				insertStatement.executeUpdate();
 			}
 		} catch (final Exception e) {
 			e.printStackTrace();
@@ -174,7 +211,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 	}
 
 	@Override
-	public void insertReview(Review review, Restaurant restaurant) throws RestaurantReviewDatabaseException {
+	public void insertReview(Review review, int restaurantID) throws RestaurantReviewDatabaseException {
 		Connection connection = null;
 		PreparedStatement insertStatement = null;
 
@@ -184,7 +221,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			final String insert = "insert into review (restaurantID, review, author, rating) values (?,?,?,?)";
 			insertStatement = connection.prepareStatement(insert);
 
-			insertStatement.setInt(1, restaurant.getId());
+			insertStatement.setInt(1, restaurantID);
 			insertStatement.setString(2, review.getReview());
 			insertStatement.setString(3, review.getAuthor());
 			insertStatement.setInt(4, review.getRating());
@@ -196,7 +233,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			e.printStackTrace();
 			throw new RestaurantReviewDatabaseException("Error inserting review into database.");
 		}
-
 	}
 
 }

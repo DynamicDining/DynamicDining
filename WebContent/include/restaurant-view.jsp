@@ -12,7 +12,7 @@
 			<article class="single">
 				<h2>${restaurant.name}</h2>
 				<hr>
-				<p>${restaurant.name}. 
+				<p>${restaurant.telephoneNumber}. 
 				</p>
 			</article>
 		</c:forEach>

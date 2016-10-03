@@ -16,7 +16,7 @@
 			</div>
 			<ul class="menu">
 				<li><a href="ViewAll">Unsorted</a></li>
-				<li><a href="ViewAll?sort=alphabetically">A-Z</a></li>
+				<li><a href="ViewAll?sort=name">A-Z</a></li>
 				<li><a href="ViewAll?sort=rating">By Rating</a></li>
 			</ul>
 		</li>

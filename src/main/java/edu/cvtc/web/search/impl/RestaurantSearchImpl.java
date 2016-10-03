@@ -7,6 +7,7 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
 import edu.cvtc.web.comparators.NameComparator;
+import edu.cvtc.web.comparators.RatingComparator;
 import edu.cvtc.web.comparators.SortBy;
 import edu.cvtc.web.dao.RestaurantDao;
 import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
@@ -37,11 +38,13 @@ public class RestaurantSearchImpl implements RestaurantSearch {
 		}
 	}
 
-	private void sortRestaurants(final List<Restaurant> movies, final String sortType) {
+	private void sortRestaurants(final List<Restaurant> restaurants, final String sortType) {
 		switch (sortType) {
 		case SortBy.NAME:
-			Collections.sort(movies, new NameComparator());
+			Collections.sort(restaurants, new NameComparator());
 			break;
+		case SortBy.RATING:
+			Collections.sort(restaurants, new RatingComparator());
 		default:
 			break;
 		}
