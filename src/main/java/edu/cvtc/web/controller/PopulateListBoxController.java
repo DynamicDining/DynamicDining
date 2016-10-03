@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.cvtc.web.comparators.SortBy;
 import edu.cvtc.web.exception.MovieSearchException;
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.search.MovieSearch;
 import edu.cvtc.web.search.impl.MovieSearchImpl;
 
@@ -37,7 +37,7 @@ public class PopulateListBoxController extends HttpServlet {
 		
 		try {
 			final MovieSearch movieSearch = new MovieSearchImpl();
-			final List<Movie> movies = movieSearch.retrieveMovieList(SortBy.TITLE);
+			final List<Restaurant> movies = movieSearch.retrieveMovieList(SortBy.TITLE);
 			
 			request.setAttribute("movies", movies);
 			

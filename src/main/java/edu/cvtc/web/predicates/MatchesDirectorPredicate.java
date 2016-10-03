@@ -2,13 +2,13 @@ package edu.cvtc.web.predicates;
 
 import com.google.common.base.Predicate;
 
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 
 /**
  * @author Project Skeleton
  *
  */
-public class MatchesDirectorPredicate implements Predicate<Movie> {
+public class MatchesDirectorPredicate implements Predicate<Restaurant> {
 	
 	private String director;
 
@@ -18,7 +18,7 @@ public class MatchesDirectorPredicate implements Predicate<Movie> {
 	}
 
 	@Override
-	public boolean apply(final Movie movie) {
+	public boolean apply(final Restaurant movie) {
 		return movie.getDirector().equalsIgnoreCase(director);
 	}
 

@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.cvtc.web.dao.MovieDao;
+import edu.cvtc.web.dao.RestaurantDao;
 import edu.cvtc.web.dao.impl.MovieDaoImpl;
-import edu.cvtc.web.exception.MovieDatabaseException;
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.exception.RestaurantDatabaseException;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.model.Star;
 import edu.cvtc.web.util.StringUtils;
 
@@ -24,7 +24,7 @@ import edu.cvtc.web.util.StringUtils;
 public class AddMovieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private MovieDao movieDao = new MovieDaoImpl();
+	private RestaurantDao movieDao = new MovieDaoImpl();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -64,14 +64,14 @@ public class AddMovieController extends HttpServlet {
 				stars.add(new Star(actor2));
 				stars.add(new Star(actor3));
 
-				final Movie movie = new Movie(title, director, minutes, stars);
+				final Restaurant movie = new Restaurant(title, director, minutes, stars);
 
 				movieDao.insertMovie(movie);
 
 				request.setAttribute("success", "Success, a new movie has been added to the database.");
 				target = "success.jsp";
 
-			} catch (MovieDatabaseException e) {
+			} catch (RestaurantDatabaseException e) {
 				e.printStackTrace();
 				request.setAttribute("error", "Sorry, there was a problem adding this movie to the database.");
 				target = "error.jsp";

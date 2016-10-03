@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.cvtc.web.exception.MovieSearchException;
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.search.MovieSearch;
 import edu.cvtc.web.search.impl.MovieSearchImpl;
 
@@ -37,7 +37,7 @@ public class ViewAllController extends HttpServlet {
 		try {
 			final MovieSearch movieSearch = new MovieSearchImpl();
 			final String sortType = request.getParameter("sort");
-			final List<Movie> movies = movieSearch.retrieveMovieList(sortType);
+			final List<Restaurant> movies = movieSearch.retrieveMovieList(sortType);
 			
 			request.setAttribute("movies", movies);
 			

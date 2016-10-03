@@ -2,16 +2,16 @@ package edu.cvtc.web.comparators;
 
 import java.util.Comparator;
 
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 
 /**
  * @author Project Skeleton
  *
  */
-public class LengthInMinutesComparator implements Comparator<Movie> {
+public class LengthInMinutesComparator implements Comparator<Restaurant> {
 
 	@Override
-	public int compare(Movie movie1, Movie movie2) {
+	public int compare(Restaurant movie1, Restaurant movie2) {
 		return movie1.getMinutes().compareTo(movie2.getMinutes());
 	}
 

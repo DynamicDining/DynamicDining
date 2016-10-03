@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.cvtc.web.exception.MovieSearchException;
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.search.MovieSearch;
 import edu.cvtc.web.search.impl.MovieSearchImpl;
 import edu.cvtc.web.util.StringUtils;
@@ -39,7 +39,7 @@ public class SearchByTitleController extends HttpServlet {
 			try {
 				final String title = request.getParameter("title");
 				final MovieSearch movieSearch = new MovieSearchImpl();
-				final List<Movie> movies = movieSearch.findMoviesByTitle(title);
+				final List<Restaurant> movies = movieSearch.findMoviesByTitle(title);
 				
 				if (movies.isEmpty()) {
 					throw new MovieSearchException("");

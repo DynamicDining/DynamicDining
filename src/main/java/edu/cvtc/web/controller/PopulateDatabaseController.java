@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.cvtc.web.dao.MovieDao;
-import edu.cvtc.web.dao.impl.MovieDaoImpl;
-import edu.cvtc.web.exception.MovieDatabaseException;
+import edu.cvtc.web.dao.RestaurantDao;
+import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
+import edu.cvtc.web.exception.RestaurantDatabaseException;
 
 /**
  * Servlet implementation class PopulateDatabaseController
@@ -39,13 +39,13 @@ public class PopulateDatabaseController extends HttpServlet {
 			throws ServletException, IOException {
 		String target = null;
 		try {
-			final MovieDao movieDao = new MovieDaoImpl();
+			final RestaurantDao restaurantDao = new RestaurantDaoImpl();
 			final String fileName = request.getSession().getServletContext()
-					.getRealPath("/assets/spreadsheets/JavaWebProgramming.xlsx");
-			movieDao.populate(fileName);
+					.getRealPath("/assets/spreadsheets/Restaurants.xlsx");
+			restaurantDao.populate(fileName);
 			request.setAttribute("success", "Database successfully populated.");
 			target = "success.jsp";
-		} catch (final MovieDatabaseException e) {
+		} catch (final RestaurantDatabaseException e) {
 			e.printStackTrace();
 			request.setAttribute("error", "Sorry, we were unable to complete your request.");
 			target = "error.jsp";

@@ -9,11 +9,11 @@ import com.google.common.collect.Lists;
 import edu.cvtc.web.comparators.LengthInMinutesComparator;
 import edu.cvtc.web.comparators.SortBy;
 import edu.cvtc.web.comparators.TitleComparator;
-import edu.cvtc.web.dao.MovieDao;
+import edu.cvtc.web.dao.RestaurantDao;
 import edu.cvtc.web.dao.impl.MovieDaoImpl;
-import edu.cvtc.web.exception.MovieDatabaseException;
+import edu.cvtc.web.exception.RestaurantDatabaseException;
 import edu.cvtc.web.exception.MovieSearchException;
-import edu.cvtc.web.model.Movie;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.predicates.MatchesDirectorPredicate;
 import edu.cvtc.web.predicates.MatchesTitlePredicate;
 import edu.cvtc.web.search.MovieSearch;
@@ -24,12 +24,12 @@ import edu.cvtc.web.search.MovieSearch;
  */
 public class MovieSearchImpl implements MovieSearch {
 	
-	private MovieDao movieDao = new MovieDaoImpl();
+	private RestaurantDao movieDao = new MovieDaoImpl();
 
 	@Override
-	public List<Movie> retrieveMovieList(final String sortType) throws MovieSearchException {
+	public List<Restaurant> retrieveMovieList(final String sortType) throws MovieSearchException {
 		try {
-			final List<Movie> movies = retrieveMoviesFromDatabase();
+			final List<Restaurant> movies = retrieveMoviesFromDatabase();
 			if (null != sortType) {
 				sortMovies(movies, sortType);
 			}
@@ -40,7 +40,7 @@ public class MovieSearchImpl implements MovieSearch {
 		}
 	}
 
-	private void sortMovies(final List<Movie> movies, final String sortType) {
+	private void sortMovies(final List<Restaurant> movies, final String sortType) {
 		switch (sortType) {
 			case SortBy.TITLE:
 				Collections.sort(movies, new TitleComparator());
@@ -54,9 +54,9 @@ public class MovieSearchImpl implements MovieSearch {
 	}
 	
 	@Override
-	public List<Movie> findMoviesByTitle(final String title) throws MovieSearchException {
+	public List<Restaurant> findMoviesByTitle(final String title) throws MovieSearchException {
 		try {
-			final List<Movie> movies = retrieveMoviesFromDatabase();
+			final List<Restaurant> movies = retrieveMoviesFromDatabase();
 			return Lists.newArrayList(Collections2.filter(movies, new MatchesTitlePredicate(title)));
 		} catch (final Exception e) {
 			e.printStackTrace();
@@ -65,9 +65,9 @@ public class MovieSearchImpl implements MovieSearch {
 	}
 	
 	@Override
-	public List<Movie> findMoviesByDirector(final String director) throws MovieSearchException {
+	public List<Restaurant> findMoviesByDirector(final String director) throws MovieSearchException {
 		try {
-			final List<Movie> movies = retrieveMoviesFromDatabase();
+			final List<Restaurant> movies = retrieveMoviesFromDatabase();
 			return Lists.newArrayList(Collections2.filter(movies, new MatchesDirectorPredicate(director)));
 		} catch (final Exception e) {
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class MovieSearchImpl implements MovieSearch {
 		}
 	}
 
-	private List<Movie> retrieveMoviesFromDatabase() throws MovieDatabaseException {
+	private List<Restaurant> retrieveMoviesFromDatabase() throws RestaurantDatabaseException {
 		return movieDao.retrieveMovies();
 	}
 

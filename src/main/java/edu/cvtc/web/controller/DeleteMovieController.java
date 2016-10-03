@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import edu.cvtc.web.dao.MovieDao;
+import edu.cvtc.web.dao.RestaurantDao;
 import edu.cvtc.web.dao.impl.MovieDaoImpl;
-import edu.cvtc.web.exception.MovieDatabaseException;
+import edu.cvtc.web.exception.RestaurantDatabaseException;
 
 /**
  * Servlet implementation class DeleteMovieController
@@ -24,7 +24,7 @@ import edu.cvtc.web.exception.MovieDatabaseException;
 public class DeleteMovieController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private MovieDao movieDao = new MovieDaoImpl();
+	private RestaurantDao movieDao = new MovieDaoImpl();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +49,7 @@ public class DeleteMovieController extends HttpServlet {
 			request.setAttribute("success", "Success, a movie has been deleted from the database.");
 			target = "success.jsp";
 
-		} catch (MovieDatabaseException e) {
+		} catch (RestaurantDatabaseException e) {
 			e.printStackTrace();
 			request.setAttribute("error", "Sorry, there was a problem deleting this movie from the database.");
 			target = "error.jsp";
