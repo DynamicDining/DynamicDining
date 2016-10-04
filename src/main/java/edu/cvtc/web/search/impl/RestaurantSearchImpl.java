@@ -14,6 +14,7 @@ import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
 import edu.cvtc.web.exception.RestaurantDatabaseException;
 import edu.cvtc.web.exception.RestaurantSearchException;
 import edu.cvtc.web.model.Restaurant;
+import edu.cvtc.web.predicates.MatchesNamePredicate;
 import edu.cvtc.web.search.RestaurantSearch;
 
 /**

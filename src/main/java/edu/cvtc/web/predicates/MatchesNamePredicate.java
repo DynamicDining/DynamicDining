@@ -8,18 +8,18 @@ import edu.cvtc.web.model.Restaurant;
  * @author Project Skeleton
  *
  */
-public class MatchesTitlePredicate implements Predicate<Restaurant> {
+public class MatchesNamePredicate implements Predicate<Restaurant> {
 
 	private String title;
 	
-	public MatchesTitlePredicate(final String title) {
+	public MatchesNamePredicate(final String title) {
 		super();
 		this.title = title;
 	}
 
 	@Override
-	public boolean apply(final Restaurant movie) {
-		return movie.getTitle().toLowerCase().contains(title.toLowerCase());
+	public boolean apply(final Restaurant restaurant) {
+		return restaurant.getName().toLowerCase().contains(title.toLowerCase());
 	}
 
 }
