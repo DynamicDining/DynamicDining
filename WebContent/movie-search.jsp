@@ -7,7 +7,7 @@
 	<hr>
 	<div class="searchForm">
 		<form action="SearchByName" method="post">
-				<label for="title"><strong>Search by Title:</strong></label>
+				<label for="title"><strong>Search by Restaurant Name:</strong></label>
 				<input required name="title" />
 				<input class="btn btn-primary btn-lg button" type="submit" value="Search" />
 		</form>

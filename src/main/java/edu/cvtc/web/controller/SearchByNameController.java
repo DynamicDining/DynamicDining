@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import edu.cvtc.web.exception.RestaurantSearchException;
 import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.search.RestaurantSearch;
-import edu.cvtc.web.search.impl.MovieSearchImpl;
+import edu.cvtc.web.search.impl.RestaurantSearchImpl;
 import edu.cvtc.web.util.StringUtils;
 
 /**
@@ -42,8 +42,8 @@ public class SearchByNameController extends HttpServlet {
 		if (StringUtils.isNotEmpty(request.getParameter("title"))) {
 			try {
 				final String title = request.getParameter("title");
-				final RestaurantSearch restaurantSearch = new MovieSearchImpl();
-				final List<Restaurant> movies = movieSearch.findMoviesByTitle(title);
+				final RestaurantSearch restaurantSearch = new RestaurantSearchImpl();
+				final List<Restaurant> movies = restaurantSearch.findRestaurantsByName(title);
 
 				if (movies.isEmpty()) {
 					throw new RestaurantSearchException("");
