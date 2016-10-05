@@ -25,5 +25,11 @@
 				<a href="populateDatabase.jsp"><img src="assets/img/populate.png">Populate Database</a>
 			</div>
 		</li>
+		
+		<li>
+			<div class="navItem">
+				<a href="about.jsp"><img src="assets/img/populate.png">About Us</a>
+			</div>
+		</li>
 	</ul>
 </nav>
