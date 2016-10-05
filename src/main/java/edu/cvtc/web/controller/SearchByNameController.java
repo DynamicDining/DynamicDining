@@ -39,23 +39,23 @@ public class SearchByNameController extends HttpServlet {
 			throws ServletException, IOException {
 		String target = null;
 
-		if (StringUtils.isNotEmpty(request.getParameter("title"))) {
+		if (StringUtils.isNotEmpty(request.getParameter("name"))) {
 			try {
-				final String title = request.getParameter("title");
+				final String name = request.getParameter("name");
 				final RestaurantSearch restaurantSearch = new RestaurantSearchImpl();
-				final List<Restaurant> movies = restaurantSearch.findRestaurantsByName(title);
+				final List<Restaurant> restaurants = restaurantSearch.findRestaurantsByName(name);
 
-				if (movies.isEmpty()) {
+				if (restaurants.isEmpty()) {
 					throw new RestaurantSearchException("");
 				}
 
-				request.setAttribute("movies", movies);
+				request.setAttribute("restaurants", restaurants);
 
 				target = "view-all.jsp";
 
 			} catch (RestaurantSearchException e) {
 				e.printStackTrace();
-				request.setAttribute("error", "Sorry, we were unable to find a movie with that title.");
+				request.setAttribute("error", "Sorry, we were unable to find a restaurant with that name.");
 				target = "error.jsp";
 			}
 

@@ -7,7 +7,7 @@
 		</li>
 		<li>
 			<div class="navItem">
-				<a href="movie-search.jsp"><img src="assets/img/search.png">Restaurant Search</a>
+				<a href="restaurant-search.jsp"><img src="assets/img/search.png">Restaurant Search</a>
 			</div>
 		</li>
 		<li class="dropdown">
