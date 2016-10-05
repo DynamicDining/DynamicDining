@@ -10,16 +10,16 @@ import edu.cvtc.web.model.Restaurant;
  */
 public class MatchesNamePredicate implements Predicate<Restaurant> {
 
-	private String title;
+	private String name;
 	
-	public MatchesNamePredicate(final String title) {
+	public MatchesNamePredicate(final String name) {
 		super();
-		this.title = title;
+		this.name = name;
 	}
 
 	@Override
 	public boolean apply(final Restaurant restaurant) {
-		return restaurant.getName().toLowerCase().contains(title.toLowerCase());
+		return restaurant.getName().toLowerCase().contains(name.toLowerCase());
 	}
 
 }
