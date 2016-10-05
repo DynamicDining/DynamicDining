@@ -6,14 +6,15 @@
 	<h2>About Us</h2>
 	<hr>
 
-		<h6>
-		For those looking for a remarkable restaurant experience, Dine or Ditch
+		<h4>Welcome to the Dine or Ditch Restaurant Review!</h4>
+		
+		<p>For those looking for a remarkable restaurant experience, Dine or Ditch
 		helps guide you to the best restaurants in town.  Dine or Ditch provides 
 		first-hand access to the world's most exciting restaurants that cover every
 		taste and budget.  Dine or Ditch collects and analyzes reviews that come from enthusiastic
 		diners like you.  Our review system is easy to understand and is intended to inform you 
 		about remarkable restaurants in your area.	
-		</h6>
+		</p>
 	
 	<div class="searchForm">
 		<form action="SearchByName" method="post">
