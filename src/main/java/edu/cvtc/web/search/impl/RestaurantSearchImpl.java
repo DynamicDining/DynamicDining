@@ -24,7 +24,9 @@ import edu.cvtc.web.search.RestaurantSearch;
 public class RestaurantSearchImpl implements RestaurantSearch {
 
 	private RestaurantDao restaurantDao = new RestaurantDaoImpl();
-
+	
+	
+	
 	@Override
 	public List<Restaurant> retrieveRestaurantList(final String sortType) throws RestaurantSearchException {
 		try {

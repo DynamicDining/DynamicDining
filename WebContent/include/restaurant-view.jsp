@@ -13,6 +13,7 @@
 				<h2>${restaurant.name}</h2>
 				<hr>
 				<p>${restaurant.telephoneNumber}. 
+				<a href="RestaurantProfile?name=${restaurant.name}">See Profile</a>
 				</p>
 			</article>
 		</c:forEach>
