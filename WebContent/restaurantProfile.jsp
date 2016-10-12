@@ -21,16 +21,18 @@
 				<h2>${restaurant.name}</h2>
 				<hr>
 				<p>${restaurant.address}</p>
-				<p>${restaurant.city},${restaurant.state} ${restaurant.zipCode}</p>
+				<p>${restaurant.city},${restaurant.state}${restaurant.zipCode}</p>
 				<p>${restaurant.telephoneNumber}</p>
 				<p>
 					Website: <a href="${restaurant.website}">${restaurant.name}</a>
 				</p>
 				<p>Rating: ${restaurant.rating}</p>
 				
+				<p>ID: ${restaurant.id}</p>
+
 				<hr>
 				<div>
-				<h3>Create a Review</h3>
+					<h3>Create a Review</h3>
 					<form action="CreateReview" method="post">
 						<label for="name">Name</label> <input required name="name" />
 
@@ -40,6 +42,17 @@
 						<input class="btn btn-primary btn-lg button" type="submit"
 							value="Review" />
 					</form>
+					<br>
+									
+					<c:forEach var="review" items="${reviews}">
+					<div>
+						<hr>
+						<h4>${review.author}</h4>
+						<p>Review: ${review.review}</p>
+						<p>Rating: ${review.rating}</p>
+					</div>
+					</c:forEach>
+					
 				</div>
 
 				<a href="CreateReview"></a>

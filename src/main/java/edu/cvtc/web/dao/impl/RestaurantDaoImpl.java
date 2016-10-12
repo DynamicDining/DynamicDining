@@ -41,7 +41,8 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			statement.setQueryTimeout(DBUtils.TIMEOUT);
 
 			final ResultSet results = statement
-					.executeQuery("select * from review where restaurantID = '" + restaurantID + "'");
+					.executeQuery("select * from review where restaurantID = " + restaurantID);
+
 			buildReviewList(reviews, results);
 		} catch (final Exception e) {
 			e.printStackTrace();
@@ -182,6 +183,47 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			statement.executeUpdate(DROP_TABLE_REVIEW);
 			statement.executeUpdate(CREATE_TABLE_RESTAURANT);
 			statement.executeUpdate(CREATE_TABLE_REVIEW);
+
+			//
+			//
+			// TODO FIX
+			final String insertReview = "insert into review (restaurantID, review, author, rating) values (?,?,?,?)";
+			insertStatement = connection.prepareStatement(insertReview);
+
+			insertStatement.setInt(1, 1);
+			insertStatement.setString(2, "good burgers");
+			insertStatement.setString(3, "Bob");
+			insertStatement.setInt(4, 1);
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+			insertStatement.executeUpdate();
+
+			insertStatement.setInt(1, 1);
+			insertStatement.setString(2, "great burgers");
+			insertStatement.setString(3, "Jack");
+			insertStatement.setInt(4, 1);
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+			insertStatement.executeUpdate();
+
+			insertStatement.setInt(1, 2);
+			insertStatement.setString(2, "good sushi");
+			insertStatement.setString(3, "Tom");
+			insertStatement.setInt(4, 1);
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+			insertStatement.executeUpdate();
+
+			insertStatement.setInt(1, 3);
+			insertStatement.setString(2, "food sucks");
+			insertStatement.setString(3, "Amy");
+			insertStatement.setInt(4, 0);
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+			insertStatement.executeUpdate();
+			//
+			//
+			//
 
 			final List<Restaurant> restaurants = WorkBookUtility.retrieveRestaurantsFromWorkBook(new File(filePath));
 
