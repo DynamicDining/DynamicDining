@@ -6,7 +6,7 @@ package edu.cvtc.web.model;
  */
 public class Restaurant {
 
-	private Integer id;
+	private int id;
 	private String name;
 	private String address;
 	private String city;
@@ -27,7 +27,7 @@ public class Restaurant {
 		this.website = website;
 	}
 
-	public Restaurant(Integer id, String name, String address, String city, String state, String zipCode,
+	public Restaurant(int id, String name, String address, String city, String state, String zipCode,
 			String telephoneNumber, String website) {
 		this.id = id;
 		this.name = name;
@@ -39,7 +39,7 @@ public class Restaurant {
 		this.website = website;
 	}
 
-	public Restaurant(Integer id, String name, String address, String city, String state, String zipCode,
+	public Restaurant(int id, String name, String address, String city, String state, String zipCode,
 			String telephoneNumber, String website, double rating) {
 		this.id = id;
 		this.name = name;
@@ -52,11 +52,11 @@ public class Restaurant {
 		this.rating = rating;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
