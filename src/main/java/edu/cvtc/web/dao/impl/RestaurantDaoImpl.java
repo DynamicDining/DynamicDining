@@ -140,11 +140,16 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
 			statement.setQueryTimeout(DBUtils.TIMEOUT);
 
-			final String sql = "select count(restaurantID) as total, sum(rating) as goodRatings from review";
+			final String sql = "select count(restaurantID) as total, sum(rating) as goodRatings from review where restaurantID = "
+					+ restaurantID;
 			final ResultSet results = statement.executeQuery(sql);
 
 			final int goodRatings = results.getInt("goodRatings");
 			final int totalRatings = results.getInt("total");
+
+			System.out.println("good ratings: " + goodRatings);
+			System.out.println("total ratings: " + totalRatings);
+
 			goodRatingsPercentage = totalRatings != 0
 					? Math.round(((double) goodRatings / totalRatings) * 100.0) / 100.0 : totalRatings;
 
@@ -210,6 +215,14 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			insertStatement.setString(2, "good sushi");
 			insertStatement.setString(3, "Tom");
 			insertStatement.setInt(4, 1);
+
+			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
+			insertStatement.executeUpdate();
+
+			insertStatement.setInt(1, 2);
+			insertStatement.setString(2, "slow service");
+			insertStatement.setString(3, "Becky");
+			insertStatement.setInt(4, 0);
 
 			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
 			insertStatement.executeUpdate();

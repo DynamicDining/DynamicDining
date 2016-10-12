@@ -21,7 +21,7 @@
 				<h2>${restaurant.name}</h2>
 				<hr>
 				<p>${restaurant.address}</p>
-				<p>${restaurant.city},${restaurant.state}${restaurant.zipCode}</p>
+				<p>${restaurant.city}, ${restaurant.state} ${restaurant.zipCode}</p>
 				<p>${restaurant.telephoneNumber}</p>
 				<p>
 					Website: <a href="${restaurant.website}">${restaurant.name}</a>

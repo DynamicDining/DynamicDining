@@ -8,7 +8,7 @@ public class RatingComparator implements Comparator<Restaurant> {
 
 	@Override
 	public int compare(Restaurant restaurant1, Restaurant restaurant2) {
-		return Double.compare(restaurant1.getRating(), restaurant2.getRating());
+		return Double.compare(restaurant2.getRating(), restaurant1.getRating());
 	}
 
 }

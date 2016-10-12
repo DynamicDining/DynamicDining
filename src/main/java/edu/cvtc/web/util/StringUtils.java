@@ -3,6 +3,8 @@
  */
 package edu.cvtc.web.util;
 
+import java.text.DecimalFormat;
+
 /**
  * @author Fong
  *
@@ -22,6 +24,8 @@ public class StringUtils {
 	}
 
 	public static String doubleToString(Double number) {
-		return number.toString();
+		DecimalFormat format = new DecimalFormat("###.#");
+
+		return format.format(number).toString();
 	}
 }
