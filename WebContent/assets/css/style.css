@@ -144,6 +144,58 @@ h4 {
 
 #navMain a:visited { color: rgba(216,216,216,1);}
 
+/****************/
+/* Image Slider */
+/****************/
+/*
+.iamgeRotator {
+    position: relative;
+    margin: 3em auto 5em;
+    max-width: 800px;
+    width: 100%;
+    min-height: 400px;
+}
+
+.imageContent {
+    position: absolute;
+    min-height: 200px;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+    padding: 2em 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    opacity: 0;
+}
+
+.no-js .imageRotator .imageContent {
+    border-bottom: none;
+}
+
+.imageContent.imageCurrent, 
+.no-js .imageRotator .imageContent {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+/* Progress bar*/
+.imageProgress {
+    position: absolute;
+    background: #47a3da;
+    height: 1px;
+    width: 0%;
+    top: 0;
+    z-index: 1000;
+}
+
+.imageContent img{
+    float: right;
+    margin-left: 3em;
+}
+*/
+
 /********/
 /* ID's */
 /********/
