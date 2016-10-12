@@ -1,21 +1,53 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="include/pageHeader.jsp">
-	<jsp:param value="Java Web Programming: Restaurant Search" name="pageTitle"/>
-	<jsp:param value="This is a JSP example that demonstrates how to use a form to search for a Restaurant from our Spreadsheet." name="pageDescription"/>
+	<jsp:param value="Java Web Programming: Restaurant Search"
+		name="pageTitle" />
+	<jsp:param
+		value="This is a JSP example that demonstrates how to use a form to search for a Restaurant from our Spreadsheet."
+		name="pageDescription" />
 </jsp:include>
-<article class="single">
-	<c:choose>
-		<c:when test="${empty restaurant}">
-			<article class="single">
-				<h2>Oops!</h2>
+<c:choose>
+	<c:when test="${empty restaurants}">
+		<article class="single">
+			<h2>Oops!</h2>
+			<hr>
+			<p>Sorry, we couldn't find that restaurant.</p>
+		</article>
+	</c:when>
+	<c:otherwise>
+		<article class="single">
+			<c:forEach var="restaurant" items="${restaurants}">
+
+				<h2>${restaurant.name}</h2>
 				<hr>
-				<p>Sorry, the database is empty.</p>
-			</article>
-		</c:when>
-		<c:otherwise>
-			<a href="CreateReview"></a>
-		</c:otherwise>
-	</c:choose>
-	<a href="CreateReview"></a>
-</article>
-<%@ include file="include/footer.jsp"  %>
+				<p>${restaurant.address}</p>
+				<p>${restaurant.city},${restaurant.state} ${restaurant.zipCode}</p>
+				<p>${restaurant.telephoneNumber}</p>
+				<p>
+					Website: <a href="${restaurant.website}">${restaurant.name}</a>
+				</p>
+				<p>Rating: ${restaurant.rating}</p>
+				
+				<hr>
+				<div>
+				<h3>Create a Review</h3>
+					<form action="CreateReview" method="post">
+						<label for="name">Name</label> <input required name="name" />
+
+						<textarea required name="review"></textarea>
+
+						<label for="rating">Rating</label> <input required name="rating" />
+						<input class="btn btn-primary btn-lg button" type="submit"
+							value="Review" />
+					</form>
+				</div>
+
+				<a href="CreateReview"></a>
+
+			</c:forEach>
+		</article>
+
+	</c:otherwise>
+</c:choose>
+
+<%@ include file="include/footer.jsp"%>
