@@ -5,6 +5,7 @@
 <meta name="description" content="${param.pageDescription}" />
 <link rel="icon" href="assets/img/favicon.ico">
 <%@ include file="styles.jsp" %>
+<%@ include file="javascript.jsp" %>
 </head>
 <body>
 <div id="wrapper">
