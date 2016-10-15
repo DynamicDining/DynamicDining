@@ -36,6 +36,8 @@
 					<form action="CreateReview" method="post">
 						<div class="form-group">
 							
+							<input id="restaurantID" name="restaurantID" type="hidden" value="${restaurant.id }">
+							
 							<label for="author" ><strong>Name:</strong></label>
 							<input id="author" name="author" class="formLabel">
 							

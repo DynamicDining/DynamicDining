@@ -53,6 +53,7 @@ public class RestaurantProfileController extends HttpServlet {
 			final List<Review> reviews = restaurantDao.retrieveRestaurantReviews(restaurants.get(0).getId());
 
 			request.setAttribute("restaurants", restaurants);
+			
 			request.setAttribute("reviews", reviews);
 
 			target = "restaurantProfile.jsp";
