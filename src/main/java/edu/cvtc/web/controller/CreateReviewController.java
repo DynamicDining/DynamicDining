@@ -1,7 +1,6 @@
 package edu.cvtc.web.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.cvtc.web.dao.RestaurantDao;
 import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
-import edu.cvtc.web.exception.RestaurantReviewDatabaseException;
+import edu.cvtc.web.model.Restaurant;
 import edu.cvtc.web.model.Review;
 
 /**
@@ -36,25 +35,42 @@ public class CreateReviewController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String target = null;
-
+		
 		try {
-			final RestaurantDao restaurantDao = new RestaurantDaoImpl();
-			final Integer restaurantID = 1;
-			final List<Review> review = restaurantDao.retrieveRestaurantReviews(restaurantID);
-
-			request.setAttribute("review", review);
-
-			target = "createReview.jsp";
-
-		} catch (RestaurantReviewDatabaseException e) {
+			
+			final String author = request.getParameter("author");
+			final String reviewContent = request.getParameter("review");
+			final int rating = Integer.parseInt(request.getParameter("rating"));
+			
+			if(null != author && !author.isEmpty()
+					&& null != reviewContent && !reviewContent.isEmpty()
+					&& rating >= 0){ 
+				
+				final Review review = new Review(author, reviewContent, rating);
+				
+				final RestaurantDao restaurantDao = new RestaurantDaoImpl();
+				
+				restaurantDao.insertReview(review, 1);
+				
+				request.setAttribute("success", "Success, a new review has been added to the database.");
+				target = "success.jsp";
+			}else{
+				request.setAttribute("error", "Sorry you must complete all fields to add a review to the database");
+				target = "error.jsp";
+			}
+			
+			
+		} catch (final Exception e) {
 			e.printStackTrace();
-			request.setAttribute("error", "Sorry, we were unable to retrieve this restaurant from the database.");
+			request.setAttribute("error", "Sorry there was a problem adding this review to the database");
 			target = "error.jsp";
 		}
-
+			
+		
 		request.getRequestDispatcher(target).forward(request, response);
-
+	
 	}
 
 }

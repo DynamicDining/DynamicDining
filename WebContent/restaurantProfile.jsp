@@ -34,14 +34,20 @@
 				<div>
 					<h3>Create a Review</h3>
 					<form action="CreateReview" method="post">
-						<label for="name">Name</label> <input required name="name" />
-
-						<textarea required name="review"></textarea>
-
-						<label for="rating">Rating</label> <input required name="rating" />
-						<input class="btn btn-primary btn-lg button" type="submit"
-							value="Review" />
-					</form>
+						<div class="form-group">
+							
+							<label for="author" ><strong>Name:</strong></label>
+							<input id="author" name="author" class="formLabel">
+							
+							<label for="review" ><strong>Review:</strong></label>
+							<textarea id="review" name="review" class="formLabel"></textarea>
+							
+							<label for="rating" ><strong>Rating:</strong></label>
+							<input id="rating" name="rating" class="formLabel">
+							
+							<input class="btn btn-primary btn-lg>" name="submit" type="submit" value="Add Rating">
+						</div>
+					</form>	
 					<br>
 									
 					<c:forEach var="review" items="${reviews}">
@@ -54,8 +60,6 @@
 					</c:forEach>
 					
 				</div>
-
-				<a href="CreateReview"></a>
 
 			</c:forEach>
 		</article>
