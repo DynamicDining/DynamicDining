@@ -41,8 +41,8 @@
 							<label for="author" ><strong>Name:</strong></label>
 							<input id="author" name="author" class="formLabel">
 							
-							<label for="review" ><strong>Review:</strong></label>
-							<textarea id="review" name="review" class="formLabel"></textarea>
+							<label for="reviewContent" ><strong>Review:</strong></label>
+							<textarea id="reviewContent" name="reviewContent" class="formLabel"></textarea>
 							
 							<label for="rating" ><strong>Rating:</strong></label>
 							<input id="rating" name="rating" class="formLabel">

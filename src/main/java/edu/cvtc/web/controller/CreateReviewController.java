@@ -38,14 +38,16 @@ public class CreateReviewController extends HttpServlet {
 		String target = null;
 		
 		try {
+			 
 			
 			final Integer restaurantID = Integer.parseInt(request.getParameter("restaurantID"));
 	
 			final String author = request.getParameter("author");
 			
-			final String reviewContent = request.getParameter("review");
+			final String reviewContent = request.getParameter("reviewContent");
 			
 			final Integer rating = Integer.parseInt(request.getParameter("rating"));
+			
 			
 			
 			if(null != author && !author.isEmpty()
@@ -56,8 +58,9 @@ public class CreateReviewController extends HttpServlet {
 				final Review review = new Review(restaurantID, author, reviewContent, rating);
 				
 				System.out.println(review.getId());
-				System.out.println(review.getReview());
+				
 				System.out.println(review.getAuthor());
+				System.out.println(review.getReview());
 				
 				System.out.println(review.getRating());
 				

@@ -156,6 +156,8 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		} catch (final Exception e) {
 			e.printStackTrace();
 			throw new RestaurantDatabaseException("Sorry, no rating.");
+		}finally {
+			DBUtils.closeConnections(connection, statement);
 		}
 
 		return goodRatingsPercentage;
@@ -284,9 +286,13 @@ public class RestaurantDaoImpl implements RestaurantDao {
 			insertStatement.setQueryTimeout(DBUtils.TIMEOUT);
 
 			insertStatement.executeUpdate();
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RestaurantReviewDatabaseException("Error inserting review into database.");
+		}finally {
+			DBUtils.closeConnections(connection, insertStatement);
 		}
 	}
 
