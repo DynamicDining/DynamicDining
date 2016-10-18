@@ -55,7 +55,7 @@ public class CreateReviewController extends HttpServlet {
 					&& rating >= 0){ 
 				
 				
-				final Review review = new Review(restaurantID, author, reviewContent, rating);
+				final Review review = new Review(restaurantID, reviewContent, author,  rating);
 				
 				System.out.println(review.getId());
 				
