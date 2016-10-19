@@ -16,13 +16,21 @@ import edu.cvtc.web.search.impl.RestaurantSearchImpl;
 import edu.cvtc.web.util.StringUtils;
 
 /**
- * Servlet implementation class SearchByTitleController
+ * Servlet implementation class SearchByTitleController.
  */
 @WebServlet("/SearchByName")
 public class SearchByNameController extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -32,6 +40,12 @@ public class SearchByNameController extends HttpServlet {
 	}
 
 	/**
+	 * Do post.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

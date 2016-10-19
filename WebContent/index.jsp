@@ -6,24 +6,6 @@
 	<h2>Dynamic Dining</h2>
 	<hr>
 
-	<!-- 	<div id="imageRotator" class="imageRotator">
-		<div class="imageContent">
-			<img src="assets/img/dish.jpg">
-		</div>
-		<div class="imageContent">
-			<img src="assets/img/jelo.jpg">
-		</div>
-		<div class="imageContent">
-			<img src="assets/img/kanoli.jpg">
-		</div>
-		<div class="imageContent">
-			<img src="assets/img/klub.jpg">
-		</div>
-		<div class="imageContent">
-			<img src="assets/img/pizza.jpg">
-		</div>
-	</div> -->
-
 	<div class="slides">
 		<ul class="rslides">
 			<li><img src="assets/img/dish.jpg"></li>

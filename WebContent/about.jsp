@@ -1,5 +1,5 @@
 <jsp:include page="include/pageHeader.jsp">
-	<jsp:param value="Java Web Programming: Restaurant Search" name="pageTitle"/>
+	<jsp:param value="Restaurant Search" name="pageTitle"/>
 	<jsp:param value="This is a JSP example that demonstrates the About Us page." name="pageDescription"/>
 </jsp:include>
 <article class="single">

@@ -18,15 +18,20 @@ import edu.cvtc.web.predicates.MatchesNamePredicate;
 import edu.cvtc.web.search.RestaurantSearch;
 
 /**
- * @author Project Skeleton
+ * The Class RestaurantSearchImpl.
  *
+ * @author Project Skeleton
  */
 public class RestaurantSearchImpl implements RestaurantSearch {
 
+	/** The restaurant dao. */
 	private RestaurantDao restaurantDao = new RestaurantDaoImpl();
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.search.RestaurantSearch#retrieveRestaurantList(java.lang.String)
+	 */
 	@Override
 	public List<Restaurant> retrieveRestaurantList(final String sortType) throws RestaurantSearchException {
 		try {
@@ -41,6 +46,12 @@ public class RestaurantSearchImpl implements RestaurantSearch {
 		}
 	}
 
+	/**
+	 * Sort restaurants.
+	 *
+	 * @param restaurants the restaurants
+	 * @param sortType the sort type
+	 */
 	private void sortRestaurants(final List<Restaurant> restaurants, final String sortType) {
 		switch (sortType) {
 		case SortBy.NAME:
@@ -53,6 +64,9 @@ public class RestaurantSearchImpl implements RestaurantSearch {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.search.RestaurantSearch#findRestaurantsByName(java.lang.String)
+	 */
 	@Override
 	public List<Restaurant> findRestaurantsByName(final String name) throws RestaurantSearchException {
 		try {
@@ -64,6 +78,12 @@ public class RestaurantSearchImpl implements RestaurantSearch {
 		}
 	}
 
+	/**
+	 * Retrieve restaurants from database.
+	 *
+	 * @return the list
+	 * @throws RestaurantDatabaseException the restaurant database exception
+	 */
 	private List<Restaurant> retrieveRestaurantsFromDatabase() throws RestaurantDatabaseException {
 		return restaurantDao.retrieveRestaurants();
 	}

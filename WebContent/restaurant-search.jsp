@@ -1,5 +1,5 @@
 <jsp:include page="include/pageHeader.jsp">
-	<jsp:param value="Java Web Programming: Restaurant Search" name="pageTitle"/>
+	<jsp:param value="Restaurant Search" name="pageTitle"/>
 	<jsp:param value="This is a JSP example that demonstrates how to use a form to search for a Restaurant from our Spreadsheet." name="pageDescription"/>
 </jsp:include>
 <article class="single">

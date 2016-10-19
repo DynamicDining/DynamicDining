@@ -14,11 +14,20 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import edu.cvtc.web.model.Restaurant;
 
 /**
- * @author Project Skeleton
+ * The Class WorkBookUtility.
  *
+ * @author Project Skeleton
  */
 public class WorkBookUtility {
 
+	/**
+	 * Retrieve restaurants from work book.
+	 *
+	 * @param file the file
+	 * @return the list
+	 * @throws InvalidFormatException the invalid format exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static List<Restaurant> retrieveRestaurantsFromWorkBook(final File file)
 			throws InvalidFormatException, IOException {
 		final Workbook workbook = WorkbookFactory.create(file);

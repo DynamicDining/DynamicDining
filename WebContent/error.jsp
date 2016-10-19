@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Java Web Programming: Error Page</title>
+<title>Error Page</title>
 <meta name="description" content="This is a JSP example that demonstrates how to output a filtered list of Movies to a web page." />
 <link rel="icon" href="assets/img/favicon.ico">
 <%@ include file="include/styles.jsp"  %>
