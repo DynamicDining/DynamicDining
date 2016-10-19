@@ -18,17 +18,30 @@ import edu.cvtc.web.util.DBUtils;
 import edu.cvtc.web.util.WorkBookUtility;
 
 /**
- * @author Project Skeleton
+ * The Class RestaurantDaoImpl.
  *
+ * @author Project Skeleton
  */
 public class RestaurantDaoImpl implements RestaurantDao {
 
+	/** The Constant DROP_TABLE_RESTAURANT. */
 	private static final String DROP_TABLE_RESTAURANT = "drop table if exists restaurant";
+	
+	/** The Constant DROP_TABLE_REVIEW. */
 	private static final String DROP_TABLE_REVIEW = "drop table if exists review";
+	
+	/** The Constant CREATE_TABLE_RESTAURANT. */
 	private static final String CREATE_TABLE_RESTAURANT = "create table restaurant (restaurantID integer primary key autoincrement, name text, address text, city text, state text, zipCode text, telephoneNumber text, website text);";
+	
+	/** The Constant CREATE_TABLE_REVIEW. */
 	private static final String CREATE_TABLE_REVIEW = "create table review (reviewID integer primary key autoincrement, restaurantID, review text, author text, rating integer, foreign key(restaurantID) references restaurant(restaurantID));";
+	
+	/** The Constant SELECT_FROM_RESTAURANT. */
 	private static final String SELECT_FROM_RESTAURANT = "select * from restaurant";
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.dao.RestaurantDao#retrieveRestaurantReviews(int)
+	 */
 	@Override
 	public List<Review> retrieveRestaurantReviews(int restaurantID) throws RestaurantReviewDatabaseException {
 		final List<Review> reviews = new ArrayList<Review>();
@@ -54,6 +67,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		return reviews;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.dao.RestaurantDao#retrieveRestaurants()
+	 */
 	@Override
 	public List<Restaurant> retrieveRestaurants() throws RestaurantDatabaseException {
 		final List<Restaurant> restaurants = new ArrayList<Restaurant>();
@@ -80,6 +96,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		return restaurants;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.dao.RestaurantDao#retrieveRestaurantsByName(java.lang.String)
+	 */
 	@Override
 	public List<Restaurant> retrieveRestaurantsByName(final String nameToSearchFor) throws RestaurantDatabaseException {
 		final List<Restaurant> restaurants = new ArrayList<Restaurant>();
@@ -108,6 +127,14 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		return restaurants;
 	}
 
+	/**
+	 * Builds the restaurant list.
+	 *
+	 * @param restaurants the restaurants
+	 * @param results the results
+	 * @throws SQLException the SQL exception
+	 * @throws RestaurantDatabaseException the restaurant database exception
+	 */
 	private void buildRestaurantList(final List<Restaurant> restaurants, final ResultSet results)
 			throws SQLException, RestaurantDatabaseException {
 		while (results.next()) {
@@ -129,6 +156,13 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		}
 	}
 
+	/**
+	 * Calculate restaurant rating.
+	 *
+	 * @param restaurantID the restaurant ID
+	 * @return the double
+	 * @throws RestaurantDatabaseException the restaurant database exception
+	 */
 	private double calculateRestaurantRating(int restaurantID) throws RestaurantDatabaseException {
 		Connection connection = null;
 		Statement statement = null;
@@ -163,6 +197,13 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		return goodRatingsPercentage;
 	}
 
+	/**
+	 * Builds the review list.
+	 *
+	 * @param reviews the reviews
+	 * @param results the results
+	 * @throws SQLException the SQL exception
+	 */
 	private void buildReviewList(final List<Review> reviews, final ResultSet results) throws SQLException {
 		while (results.next()) {
 			final int id = results.getInt("reviewID");
@@ -175,6 +216,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.dao.RestaurantDao#populate(java.lang.String)
+	 */
 	@Override
 	public void populate(final String filePath) throws RestaurantDatabaseException {
 		Connection connection = null;
@@ -193,7 +237,6 @@ public class RestaurantDaoImpl implements RestaurantDao {
 
 			//
 			//
-			// TODO FIX
 			final String insertReview = "insert into review (restaurantID, review, author, rating) values (?,?,?,?)";
 			insertStatement = connection.prepareStatement(insertReview);
 
@@ -267,6 +310,9 @@ public class RestaurantDaoImpl implements RestaurantDao {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.cvtc.web.dao.RestaurantDao#insertReview(edu.cvtc.web.model.Review, int)
+	 */
 	@Override
 	public void insertReview(Review review, int restaurantID) throws RestaurantReviewDatabaseException {
 		Connection connection = null;

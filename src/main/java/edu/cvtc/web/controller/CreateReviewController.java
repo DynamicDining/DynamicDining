@@ -13,13 +13,21 @@ import edu.cvtc.web.dao.impl.RestaurantDaoImpl;
 import edu.cvtc.web.model.Review;
 
 /**
- * Servlet implementation class CreateReviewController
+ * Servlet implementation class CreateReviewController.
  */
 @WebServlet("/CreateReview")
 public class CreateReviewController extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -29,6 +37,12 @@ public class CreateReviewController extends HttpServlet {
 	}
 
 	/**
+	 * Do post.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
