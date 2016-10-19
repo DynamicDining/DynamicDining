@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="include/pageHeader.jsp">
-	<jsp:param value="Java Web Programming: Restaurant Search"
+	<jsp:param value="Restaurant Search"
 		name="pageTitle" />
 	<jsp:param
 		value="This is a JSP example that demonstrates how to use a form to search for a Restaurant from our Spreadsheet."
